@@ -1,0 +1,27 @@
+<p>
+  <b>Essid:</b>
+  <%=h @course.essid %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @course.name %>
+</p>
+
+<p>
+  <b>Identifier:</b>
+  <%=h @course.identifier %>
+</p>
+
+<p>
+  <b>Sections: </b>
+  <% sections = Section.find(:all, :conditions => {:course => @course.essid} ) %> 
+  <td>
+    <% sections.each do |section| %>
+      <%= link_to(section.name, section) + ' ' %>
+    <% end %>
+  </td>
+</p>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back to Course Listing', courses_path %>

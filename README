@@ -1,0 +1,48 @@
+Readme for the Echo360 custom interface web server - 23rd June 2010
+--------------------------------------------
+The source (including this README) for this application can be found on dev.acatech.gwu.edu:git/echo360_custom.git
+
+
+Server Overview
+---------------
+Run the development server in the root directory of this application by running 'script/server' (as per the standard rails package). The home page be at http://<ip address>:3000/ as expected and has links to all other parts of the website.
+
+It currently can synchronise the following resources with the ESS - captures, presenters, schedule_rules, buildings, courses, rooms, sections and terms.
+Many of them are not editable (such as terms and courses) via this interface, and it is intended as such. Some of them allow you to perform the CRUD operations (sometimes missing Destroy due to limitations or safety) such as schedule_rules. However, because we cannot perform POST or PUT requests yet, these changes only occur locally and are not committed to the ESS. Without the facility to perform correct POST and PUT requests, no changes to the ESS can be made via this webserver.
+
+Loading times of certain pages will be much slower than others, and it is recommended that you perform synchronisation (button found on the homepage) with or without a database clearing to get updated information from the server. Synchronisation will take a while because it performs many HTTPrequests in order to get the information needed. Some pages, such as the captures schedule page also may take some time to open. This is a limitation mostly of the ESS and not something that can be optimised locally. This will be described in the following paragraph.
+
+In order to get resource information from the ESS, HTTP GET requests have to be performed. It is possible to obtain information on multiple elements at once, but the responses to these 'collection' requests only contain summary information on the elements. To obtain more detailed information, e.g. course name, a requests for the element alone must be made. As such, loading the captures_schedule page with a large date range will take an inordinate amount of time because a http-request is being sent to the ESS for every capture that is/was scheduled in that date range.
+
+Other bugs still do show up from time to time, and I have observed that in some cases, this is due to an inconsistency in the ESS (e.g. detailed information cannot be obtained for an object that contains summary information, or some necessary fields are missing from some resources).
+
+The device links page is hardcoded, which also means that it will break when devices are swapped in and out. Device specific information such as MAC address or IP address cannot, as far as I have found, be obtained through the ESS through the scheduling API (the only API being used so far).
+
+Error catching on the website is almost non-existent but in its current state is almost useless. If the ESS is unresponsive, the httprequest code will throw an exception which is not caught and will be exposed to the user. This will be rectified once the POST and PUT functionality is added to the server since mal-formed xml data sent to the ESS will be the primary source of errors and I think building an error catching system around that will allow for more a more robust website.
+
+Code quirks
+-----------
+The utility code can be found in app/helpers/util. Utility code includes the http_request, o_auth and xml parsing code. It currently also contains some html generator functions (html_gen).
+
+Version Control Stuff
+---------------
+As of the writing of this readme, the latest version is on the git branch 0.0.8_app_data but the last working copy (hopefully) has been merged into master. Older branches have been kept as 'savepoints' just in case I need old copies.
+
+Technical Overview
+-------------------
+Most of the resources necessary are included.
+Missing parts are -
+  REST interface for creating a capture schedule
+  Local Authentication
+  Ability to POST or PUT (currently doing testing in the sched_viewer project
+    Need either more input from Echo360 or a test server
+
+
+Changelog -
+Jun/1/2010 - Lost the old readme, had to create this new one. Resources have mostly been set up.
+
+Todo - 
+Need to work on the CSS to create a better layout/color palette for the site.
+Fix http_requester to allow for PUT and POST
+
+Notes -

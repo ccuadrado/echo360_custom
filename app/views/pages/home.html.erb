@@ -1,0 +1,26 @@
+<h1>Echo360 Custom Interface</h1>
+<% if flash[:notice] %>
+  <div class = "notice"><%= flash[:notice] %></div>
+<% end %>
+
+<p>
+  This is the home page for GWU's echo360 custom interface. <br />
+  There's nothing currently here besides the links for the device pages.
+</p>
+
+<table class="simple_table">
+
+  <% if (!AppData.table_exists?) %>
+  <%=  h "Migrate your database!" %>
+  <% else %>
+  <%   if (@last_sync_val.nil?) %>
+  <%=    create_table([[button_to("Synchronise with server", :action => 'sync_all'), "Not synced"]]) %>
+  <%   else %>
+  <%=    create_table([[button_to("Synchronise with server", :action => 'sync_all'), "Last synced on: #{@last_sync_val}"]]) %>
+  <%   end %>
+  <%=  create_table([[button_to("Clear Database", :action => 'clear_db'), "In case errors pop up that sync won't fix"]]) %>
+  <% end %>
+</table>
+
+<%= button_to("Show_Request", :action => 'show_request') %>
+

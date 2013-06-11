@@ -1,0 +1,32 @@
+<% if flash[:notice] %>
+  <div class = "notice"><%= flash[:notice] %></div>
+<% end %>
+
+<p>
+  <b>Essid:</b>
+  <%=h @presenter.essid %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @presenter.last_name %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%=h @presenter.first_name %>
+</p>
+
+<p>
+  <b>Created time:</b>
+  <%=h @presenter.created_time.localtime %>
+</p>
+
+<p>
+  <b>Email address:</b>
+  <%=h @presenter.email_address %>
+</p>
+
+
+<%= link_to 'Edit', edit_presenter_path(@presenter) %> |
+<%= link_to 'Back', presenters_path %>

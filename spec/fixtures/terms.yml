@@ -1,0 +1,27 @@
+# == Schema Information
+# Schema version: 20100614205416
+#
+# Table name: terms
+#
+#  id         :integer         not null, primary key
+#  essid      :string(255)     not null
+#  name       :string(255)     not null
+#  start_date :datetime        not null
+#  end_date   :datetime        not null
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  essid: MyString
+  name: MyString
+  start_date: 2010-05-27 17:25:20
+  end_date: 2010-05-27 17:25:20
+
+two:
+  essid: MyString
+  name: MyString
+  start_date: 2010-05-27 17:25:20
+  end_date: 2010-05-27 17:25:20

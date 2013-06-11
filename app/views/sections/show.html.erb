@@ -1,0 +1,41 @@
+<h1>Section</h1>
+<p>
+  <b>Essid:</b>
+  <%=h @section.essid %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @section.name %>
+</p>
+
+<p>
+  <b>Course:</b>
+  <%=h Course.find(:first, :conditions => {:essid => @section.course}).name %>
+</p>
+
+<p>
+  <b>Section Complete?</b>
+  <%=h @section.section_complete %>
+</p>
+
+<p>
+  <b>Publishing Complete?</b>
+  <%=h @section.publishing_complete %>
+</p>
+
+<p>
+  <b>Do Not Publish?</b>
+  <%=h @section.do_not_publish %>
+</p>
+
+<p>
+  <b>Presenters?</b>
+  <%= h @section.presenters_names %>
+</p>
+
+<p>
+  <%= link_to 'Schedule Rules', section_schedule_rules_path(@section) %>
+</p>
+
+<%= link_to 'Back', courses_path %>

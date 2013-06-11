@@ -1,0 +1,30 @@
+# == Schema Information
+# Schema version: 20100614205416
+#
+# Table name: presenters
+#
+#  id            :integer         not null, primary key
+#  essid         :string(255)     not null
+#  last_name     :string(255)     not null
+#  first_name    :string(255)     not null
+#  created_time  :datetime        not null
+#  email_address :string(255)     not null
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  essid: MyString
+  last_name: MyString
+  first_name: MyString
+  created_time: 2010-05-27 14:15:09
+  email_address: MyString
+
+two:
+  essid: MyString
+  last_name: MyString
+  first_name: MyString
+  created_time: 2010-05-27 14:15:09
+  email_address: MyString

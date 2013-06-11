@@ -1,0 +1,33 @@
+<h1>Schedule Rules</h1>
+<h3>
+  <%=h 'for ' + @course.name %>
+</h3>
+<%= link_to 'New schedule_rule', new_section_schedule_rule_path(@section) %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Room</th>
+    <th>Start date</th>
+    <th>Start time</th>
+    <th>End date</th>
+  </tr>
+
+<% @schedule_rules.each do |schedule_rule| %>
+  <tr>
+    <% room = find(Room, {:essid => schedule_rule.room}) %>
+    <% room.nil? ? room = "" : room_name = room.full_name %>
+    <td><%=h schedule_rule.title %></td>
+    <td><%=h room_name %></td>
+    <td><%=h schedule_rule.start_date %></td>
+    <td><%=h schedule_rule.start_time.localtime.strftime('%H:%M:%S') %></td>
+    <td><%=h schedule_rule.end_date %></td>
+    
+    <td><%= link_to 'Show', section_schedule_rule_path(@section, schedule_rule) %></td>
+    <td><%= link_to 'Edit', edit_section_schedule_rule_path(@section, schedule_rule) %></td>
+    <td><%= link_to 'Destroy', section_schedule_rule_path(@section, schedule_rule), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back to Course', course_path(@section) %>

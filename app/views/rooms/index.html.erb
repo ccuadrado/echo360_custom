@@ -1,0 +1,25 @@
+<h1>Listing rooms</h1>
+
+<p>
+<%= link_to 'New room', new_room_path %>
+</p>
+
+<table class="simple_table">
+  <tr>
+    <th>Building</th>
+    <th>Name</th>
+  </tr>
+
+<% @buildings.each do |building| %>
+  <% Room.find(:all, :conditions => {:building => building.essid}).each do |room| %>
+    <tr>
+      <td><%=h building.name %></td>
+      <td><%= link_to room.name, room %></td>
+<!--      <td><%= link_to 'Edit', edit_room_path(room) %></td>
+    <td><%= link_to 'Destroy', room, :confirm => 'Are you sure?', :method => :delete %></td> -->
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />

@@ -1,0 +1,31 @@
+<h1>Editing presenter</h1>
+
+<% form_for(@presenter) do |f| %>
+  <%= f.error_messages %>
+
+
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+<!--
+  <p>
+    <%= f.label :created_time %><br />
+    <%= f.datetime_select :created_time %>
+  </p>
+  -->
+  <p>
+    <%= f.label :email_address %><br />
+    <%= f.text_field :email_address %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @presenter %> |
+<%= link_to 'Back', presenters_path %>

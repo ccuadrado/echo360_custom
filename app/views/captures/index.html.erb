@@ -1,0 +1,22 @@
+<h1>List of Captures</h1>
+
+<% form_tag(cap_index_path, :method => "get") do %>
+  <%= label_tag(:start_date, "Start date:") %>
+  <%= text_field_tag(:start_date, @start_date.localtime.strftime("%Y-%m-%d")) %>
+
+  <%= label_tag(:end_date, "End date:") %>
+  <%= text_field_tag(:end_date, @end_date.localtime.strftime("%Y-%m-%d")) %>
+  <%= submit_tag("Filter") %>
+  <br />
+    <%= submit_tag("This Week") %>
+    <%= submit_tag("Today") %>
+<%end%>
+
+<table class="standard_table">
+  <tr>
+    <th>Date_Time</th>
+    <th>Room</th>
+    <th>Course-Section</th>
+  </tr>
+  <%= create_table(get_captures) %>
+</table>

@@ -1,0 +1,53 @@
+<%= javascript_include_tag 'specific/schedule_rules.js' %>
+<h1>Editing schedule_rule</h1>
+
+<% form_tag(section_schedule_rule_path(@section), {:class => 'edit_schedule_rule', :method => :put}) do %>
+  
+  <%= label_tag(:title, "Title") %>
+  <%= text_field(:schedule_rule, :title) %><br />
+
+  <%= label_tag(:description, "Description") %><br />
+
+  <%= text_area(:schedule_rule, :description, :cols => 20, :rows => 20, :class => 'small_description') %><br />
+
+  <%= label_tag(:room, "Room") %>
+  <%= collection_select(:schedule_rule, :room, Room.all, :essid, :full_name)%><br />
+  
+  <%= label_tag(:presenters, "Presenters") %><br />
+  <%= collection_select(:schedule_rule, :presenters, Presenter.all, :essid, 
+                        :full_name, {}, {:multiple => true})%><br />
+  
+  <%= label_tag(:start_date, "Start Date") %>
+  <%= date_select(:schedule_rule, :start_date) %><br />
+  
+  <%= label_tag(:end_date, "End Date") %>
+  <%= date_select(:schedule_rule, :end_date) %><br />
+  
+  <div class="subcontainer">
+
+    <div class="left-element">  
+      <%= label_tag(:start_time, "Start Time") %>
+      <%= time_select(:schedule_rule, :start_time) %>
+    </div>
+    
+    <div class="right-element">
+      <%= label_tag(:duration, "Duration (in Minutes)") %>
+      <%= text_field(:schedule_rule, :duration) %>
+    </div>
+  
+  </div>
+  
+  <!-- TODO: Hide days of week when recurring is unchecked using Javascript -->
+  <%= label_tag(:recurring, "Recurring Schedule") %>
+  <%= check_box(:schedule_rule, :recurring, {:id=>:recurring_box, :onClick=>"checkBoxToggle('recurring_box', 'recurring_fields')"}) %>
+        
+  <table class="small_table" id="recurring_fields">
+    <%= days_check_box(:schedule_rule) %>
+  </table> <br />
+
+    <%= submit_tag("Update") %>
+  <%end%> 
+<p>
+  <%= link_to 'Show', section_schedule_rule_path(@section) %> |
+  <%= link_to 'Back', section_schedule_rules_path %>
+</p>

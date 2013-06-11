@@ -1,0 +1,66 @@
+<% if flash[:notice] %>
+  <div class = "notice"><%= flash[:notice] %></div>
+<% end %>
+
+<p>
+  <b>Essid:</b>
+  <%=h @schedule_rule.essid %><br />
+
+  <b>Course:</b>
+  <%=h @course.name %><br />
+  <b>Section:</b>
+  <%=h @section.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @schedule_rule.title %><br />
+
+  <b>Description:</b>
+  <%=h @schedule_rule.description %>
+</p>
+
+<p>
+  <b>Building:</b>
+  <%=h @building_name %><br />
+  <b>Room:</b>
+  <%=h @room_name %><br />
+  <b>Presenter(s):</b>
+  <%=h @schedule_rule.presenters_names %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @schedule_rule.start_date %><br />
+  <b>End date:</b>
+  <%=h @schedule_rule.end_date %>
+</p>
+
+<div class="subcontainer">
+
+  <div class="left-element">  
+    <b>Start Time</b>
+    <%=h @schedule_rule.start_time.localtime.strftime('%H:%M:%S') %>
+  </div>
+  
+  <div class="right-element">
+    <b>Duration (in Minutes):</b>
+    <%=h @schedule_rule.duration/60 %>
+  </div>
+  
+</div>
+
+<p>
+  <b>Recurring:</b>
+  <%=h @schedule_rule.recurring.to_s %><br />
+  <% if @schedule_rule.recurring %>
+  <b>Days of week:</b>
+  <%= @days_of_week %><br />
+
+  <b>Excluded dates:</b>
+  <%=h @schedule_rule.excluded_dates %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_section_schedule_rule_path(@section, @schedule_rule) %> |
+<%= link_to 'Back to Schedule Rules', section_schedule_rules_path %>

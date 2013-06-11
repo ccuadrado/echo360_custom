@@ -1,0 +1,42 @@
+# == Schema Information
+# Schema version: 20100614205416
+#
+# Table name: sections
+#
+#  id                     :integer         not null, primary key
+#  essid                  :string(255)     not null
+#  course                 :string(255)     not null
+#  name                   :string(255)     not null
+#  section_complete       :boolean         not null
+#  publishing_complete    :boolean         not null
+#  do_not_publish         :boolean         not null
+#  default_publishers_set :boolean         not null
+#  presenters             :string(255)     default("--- []"), not null
+#  schedule_rules         :string(255)     not null
+#  created_at             :datetime        not null
+#  updated_at             :datetime        not null
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  essid: MyString
+  course: MyString
+  name: MyString
+  section_complete: false
+  publishing_complete: false
+  do_not_publish: false
+  default_publishers_set: false
+  presenters: MyString
+  schedule_rules: MyString
+
+two:
+  essid: MyString
+  course: MyString
+  name: MyString
+  section_complete: false
+  publishing_complete: false
+  do_not_publish: false
+  default_publishers_set: false
+  presenters: MyString
+  schedule_rules: MyString

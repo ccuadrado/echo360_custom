@@ -1,0 +1,18 @@
+<p>
+  <b>Essid:</b>
+  <%=h @room.essid %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @room.name %>
+</p>
+
+<p>
+  <b>Building:</b>
+  <%= h Building.find(:first, :conditions => {:essid => @room.building}).name %>
+</p>
+
+
+<!-- <%= link_to 'Edit', edit_room_path(@room) %> | -->
+<%= link_to 'Back', rooms_path %>

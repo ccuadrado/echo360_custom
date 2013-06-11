@@ -1,0 +1,24 @@
+<h1>Listing presenters</h1>
+
+<p>
+<%= link_to 'New presenter', new_presenter_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Last name</th>
+    <th>First name</th>
+  </tr>
+
+<% @presenters.each do |presenter| %>
+  <tr>
+    <td><%=h presenter.last_name %></td>
+    <td><%=h presenter.first_name %></td>
+    <td><%= link_to 'Show', presenter %></td>
+    <td><%= link_to 'Edit', edit_presenter_path(presenter) %></td>
+<!--    <td><%= link_to 'Destroy', presenter, :confirm => 'Are you sure?', :method => :delete %></td> -->
+  </tr>
+<% end %>
+</table>
+
+<br />

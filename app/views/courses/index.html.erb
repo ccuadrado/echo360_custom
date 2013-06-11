@@ -1,0 +1,28 @@
+<h1>Listing Courses</h1>
+
+<p>
+<%= link_to 'New course', new_course_path %>
+</p>
+
+<table .truncate>
+  <tr>
+    <th>Name</th>
+    <th>Identifier</th>
+    <th>Sections</th>
+  </tr>
+
+<% @courses.each do |course| %>
+  <tr>
+    <% sections = Section.find(:all, :conditions => {:course => course.essid} ) %> 
+    <td><%= link_to course.name, course %></td>
+    <td><%=h course.identifier %></td>
+    <td>
+      <% sections.each do |section| %>
+        <%= link_to(section.name, section) %>
+      <% end %>
+    </td>
+    <td><%= link_to 'Edit', edit_course_path(course) %></td>
+  </tr>
+<% end %>
+</table>
+

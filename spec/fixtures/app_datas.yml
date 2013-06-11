@@ -1,0 +1,21 @@
+# == Schema Information
+# Schema version: 20100614205416
+#
+# Table name: app_datas
+#
+#  id         :integer         not null, primary key
+#  key        :string(255)     not null
+#  value      :string(255)     not null
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  key: MyString
+  value: MyString
+
+two:
+  key: MyString
+  value: MyString
